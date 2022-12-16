@@ -34,7 +34,7 @@ if config['APP'].getboolean('debug'):
 else:
     log.basicConfig(level=log.INFO)
 
-file_path = config['APP']['file_path'] #"C:/Users/Miha/Desktop/TestDownloads/" or use r"C:\Users\Miha\Desktop\TestDownloads"
+file_path = config['APP']['file_path'] #"C:/Users/<yourname>/Desktop/TestDownloads/" or use r"C:\Users\<yourname>\Desktop\TestDownloads"
 print("Root file path: " + file_path)
 
 parser.add_argument('-p', "--path", help="Sets root file path", default=file_path)
