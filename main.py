@@ -10,7 +10,7 @@ empty_folders_remove = True
 automatically_create_folders = True
 move_files_to_root = False
 
-parser = argparse.ArgumentParser(description='A test program.')
+parser = argparse.ArgumentParser(description='Simple program to organise downloads folder.')
 config = configparser.ConfigParser()
 
 def write_config_file():
@@ -38,14 +38,14 @@ file_path = config['APP']['file_path'] #"C:/Users/<yourname>/Desktop/TestDownloa
 print("Root file path: " + file_path)
 
 parser.add_argument('-p', "--path", help="Sets root file path", default=file_path)
-parser.add_argument('-f', "--folders", help="Moves files from specified folders to root folder. Folders must be separated with comma(,)", default="")
+parser.add_argument('-f', "--folders", help="Moves files from specified folders to root folder. Folders must be separated with space", default="")
 parser.add_argument('-mr', "--movetoroot", help="Enables move files to root folder. Set to 1 or 0", default=False)
-parser.add_argument('-c', "--createfolders", help="Crates and moves files only to specified folders. Folders must be separated with comma(,)", default="")
+parser.add_argument('-c', "--createfolders", help="Crates and moves files only to specified folders. Folders must be separated with space", default="")
 args = parser.parse_args()
 file_path = args.path
-move_from_folders = args.folders.split(',')
+move_from_folders = args.folders.split()
 move_files_to_root = args.movetoroot
-create_folders = args.createfolders.split(',')
+create_folders = args.createfolders.split()
 
 if len(create_folders) > 0:
     automatically_create_folders = False
@@ -58,7 +58,7 @@ if len(file_path) == 0:
     print("File path: " + file_path)
 
 #Move all files from folders to root folder
-if move_files_to_root:   
+if move_files_to_root:
     for folder in move_from_folders:
         if os.path.exists(file_path + folder):
             for file in os.listdir(file_path + folder):
